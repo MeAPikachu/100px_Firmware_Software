@@ -267,7 +267,7 @@ int main()
 	ret = axi_clkgen_init(&clkgen_4134, &clkgen_4134_init);
 	if (ret != 0)
 		return -1;
-
+		
 	ret = axi_clkgen_set_rate(clkgen_4134, AD713x_SPI_ENG_REF_CLK_FREQ_HZ);
 	if (ret != 0)
 		return -1;
@@ -284,6 +284,21 @@ int main()
 	ret = ad713x_init(&ad713x_dev_1, &ad713x_init_param_1);
 	if (ret != 0)
 		return -1;
+
+
+	ret = ad713x_dig_filter_sel_ch(ad713x_dev_1, SINC3, CH0);
+	if (ret != 0)
+    	return ret;
+	ret = ad713x_dig_filter_sel_ch(ad713x_dev_1, SINC3, CH1);
+	if (ret != 0)
+    	return ret;
+	ret = ad713x_dig_filter_sel_ch(ad713x_dev_1, SINC3, CH2);
+	if (ret != 0)
+    	return ret;
+	ret = ad713x_dig_filter_sel_ch(ad713x_dev_1, SINC3, CH3);
+	if (ret != 0)
+    	return ret;
+
 
 	spi_engine_offload_init_param.rx_dma_baseaddr = AD4134_DMA_BASEADDR;
 	spi_engine_offload_init_param.offload_config = OFFLOAD_RX_EN;
